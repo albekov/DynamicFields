@@ -45,6 +45,14 @@ namespace DynamicFields.Data.Services.Fields
             }
         }
 
+        public DynamicField GetByName(string name)
+        {
+            using (var context = new Context())
+            {
+                return context.DynamicFields.FirstOrDefault(f => f.Name == name);
+            }
+        }
+
         public DynamicField Update(DynamicField field)
         {
             using (var context = new Context())

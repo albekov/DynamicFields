@@ -8,6 +8,16 @@
     @Styles.Render("~/bundles/css")
 </head>
 <body>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Fields", "List", "Fields")</li>
+                </ul>
+        </div>
+    </nav>
+
 <div class="container">
     @RenderBody()
 </div>

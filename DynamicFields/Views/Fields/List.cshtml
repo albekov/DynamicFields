@@ -1,29 +1,52 @@
 ﻿@model DynamicFields.Controllers.FieldsListViewModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Fields list";
 }
 
-<h2>Dynamic fields</h2>
+<h2>Dynamic fields @Html.ActionLink("Add", "Add", null, new {@class = "btn btn-info"})</h2>
 
-<ul>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Label</th>
+        <th>Reference</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
     @foreach (var f in Model.DbFields)
     {
-        <li>
-            @f.Name
-            <small>-> @(f.Reference ?? "?")</small>
-        </li>
+        <tr>
+            <td>@f.Name</td>
+            <td>@f.Label</td>
+            <td
+                @if (!f.ValidReference)
+                {
+                    @:style="color: red" title="Invalid reference"
+                }
+            >
+                @f.Reference
+            </td>
+            <td>@Html.ActionLink("edit", "Edit", new {id = f.Id})</td>
+        </tr>
     }
-</ul>
+    </tbody>
+</table>
 
 
-<h2>Dynamic fields</h2>
+@if (Model.UnassignedFields.Any())
+{
+    <h2>Unassigned fields @Html.ActionLink("Assign all", "AssignAll", null, new {@class = "btn btn-info"})</h2>
 
-<ul>
-    @foreach (var f in Model.UnassignedFields)
-    {
-        <li>
-            <small>@f.Reference</small>
-        </li>
-    }
-</ul>
+    <ul class="list-unstyled">
+        @foreach (var f in Model.UnassignedFields)
+        {
+            <li>
+                @Html.ActionLink("Assign", "Add", new {reference = f.Reference})
+                @f.Reference
+            </li>
+        }
+    </ul>
+}

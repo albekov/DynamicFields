@@ -1,0 +1,19 @@
+﻿@model DynamicFields.Controllers.EditFieldViewModel
+
+@Html.HiddenFor(m => m.Id)
+<div class="form-group">
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Label)
+    @Html.TextBoxFor(m => m.Label, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Reference)
+    @Html.DropDownListFor(m => m.Reference, Model.References, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Values)
+    @Html.TextBoxFor(m => m.Values, new { @class = "form-control" })
+</div>
