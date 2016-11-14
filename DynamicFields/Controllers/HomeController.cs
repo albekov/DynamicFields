@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using DynamicFields.Data;
-using DynamicFields.Data.Model;
 using DynamicFields.Data.Services;
+using DynamicFields.Models;
 
 namespace DynamicFields.Controllers
 {
@@ -37,10 +33,8 @@ namespace DynamicFields.Controllers
         {
             string login = null;
             var id = Session["userId"];
-            if(id!=null)
-            {
+            if (id != null)
                 login = _userService.Get((int) id).Login;
-            }
             return PartialView("_LoginPartial", login);
         }
 
@@ -49,11 +43,5 @@ namespace DynamicFields.Controllers
             Session["userId"] = null;
             return RedirectToAction("Index");
         }
-    }
-
-    public class LoginViewModel
-    {
-        public int Id { get; set; }
-        public List<SelectListItem> Users { get; set; }
     }
 }

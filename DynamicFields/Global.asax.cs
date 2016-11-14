@@ -9,6 +9,7 @@ using AutoMapper;
 using DynamicFields.Controllers;
 using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
+using DynamicFields.Models;
 
 namespace DynamicFields
 {

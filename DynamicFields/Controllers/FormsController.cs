@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
+using DynamicFields.Models;
 
 namespace DynamicFields.Controllers
 {
@@ -68,24 +68,5 @@ namespace DynamicFields.Controllers
 
             return vm;
         }
-    }
-
-    public class EditFormViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
-
-    public class FormViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
-
-    public class FormsListViewModel
-    {
-        public List<FormViewModel> Forms { get; set; }
     }
 }

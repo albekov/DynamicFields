@@ -157,8 +157,16 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Models\EditFieldViewModel.cs" />
+    <Compile Include="Models\EditFormViewModel.cs" />
+    <Compile Include="Models\FieldInfoViewModel.cs" />
     <Compile Include="Controllers\FieldsController.cs" />
-    <Compile Include="Controllers\FormsControler.cs" />
+    <Compile Include="Models\FieldsListViewModel.cs" />
+    <Compile Include="Models\FieldViewModel.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
+    <Compile Include="Models\FormsListViewModel.cs" />
+    <Compile Include="Models\FormViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Controllers\ViewModelHelper.cs" />
     <Compile Include="NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -196,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

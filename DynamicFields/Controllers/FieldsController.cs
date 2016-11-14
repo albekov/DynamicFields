@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
+using DynamicFields.Models;
 
 namespace DynamicFields.Controllers
 {
@@ -74,36 +75,5 @@ namespace DynamicFields.Controllers
                 .ToList();
             return items;
         }
-    }
-
-    public class FieldInfoViewModel
-    {
-        public string Name { get; set; }
-        public string TypeName { get; set; }
-    }
-
-    public class EditFieldViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Label { get; set; }
-        public string Reference { get; set; }
-        public string Values { get; set; }
-        public List<SelectListItem> References { get; set; }
-    }
-
-    public class FieldViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Label { get; set; }
-        public string Reference { get; set; }
-        public FieldInfoViewModel ReferenceField { get; set; }
-    }
-
-    public class FieldsListViewModel
-    {
-        public List<FieldViewModel> DbFields { get; set; }
-        public List<FieldInfoViewModel> UnassignedFields { get; set; }
     }
 }
