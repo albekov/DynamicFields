@@ -29,6 +29,10 @@ namespace DynamicFields
                 config.CreateMap<DynamicField, FieldViewModel>();
                 config.CreateMap<DynamicField, EditFieldViewModel>();
                 config.CreateMap<EditFieldViewModel, DynamicField>();
+
+                config.CreateMap<DynamicForm, FormViewModel>();
+                config.CreateMap<DynamicForm, EditFormViewModel>();
+                config.CreateMap<EditFormViewModel, DynamicForm>();
             });
         }
     }

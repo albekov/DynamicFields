@@ -66,8 +66,13 @@
     <Compile Include="Migrations\201611141348060_AddDynamicFields.Designer.cs">
       <DependentUpon>201611141348060_AddDynamicFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611141833438_AddDynamicForm.cs" />
+    <Compile Include="Migrations\201611141833438_AddDynamicForm.Designer.cs">
+      <DependentUpon>201611141833438_AddDynamicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\DynamicField.cs" />
+    <Compile Include="Model\DynamicForm.cs" />
     <Compile Include="Model\IdentityEntity.cs" />
     <Compile Include="Model\Post.cs" />
     <Compile Include="Model\User.cs" />
@@ -79,8 +84,10 @@
     <Compile Include="Services\Fields\DynamicFieldHelper.cs" />
     <Compile Include="Services\Fields\DynamicFieldInfo.cs" />
     <Compile Include="Services\Fields\FieldService.cs" />
+    <Compile Include="Services\Fields\FormFieldService.cs" />
     <Compile Include="Services\Fields\IFieldService.cs" />
     <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Services\Fields\IFormFieldService.cs" />
     <Compile Include="Services\IService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611141348060_AddDynamicFields.resx">
       <DependentUpon>201611141348060_AddDynamicFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141833438_AddDynamicForm.resx">
+      <DependentUpon>201611141833438_AddDynamicForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

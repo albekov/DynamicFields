@@ -1,0 +1,13 @@
+﻿@model DynamicFields.Controllers.EditFormViewModel
+
+@{
+    ViewBag.Title = "Edit form";
+}
+
+<h2>Edit form</h2>
+
+@using (Html.BeginForm("Edit", "Forms", new {@class = "form"}))
+{
+    @Html.Partial("_Edit", Model)
+    <input type="submit" class="btn btn-default" value="Save" />
+}
