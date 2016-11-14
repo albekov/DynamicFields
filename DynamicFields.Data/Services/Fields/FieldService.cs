@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Reflection;
+using System.Net.Mime;
 using DynamicFields.Data.Model;
 
 namespace DynamicFields.Data.Services.Fields
@@ -12,7 +12,7 @@ namespace DynamicFields.Data.Services.Fields
         private static readonly Lazy<List<DynamicFieldInfo>> DynamicFields =
             new Lazy<List<DynamicFieldInfo>>(GetAllDynamicFields);
 
-        public List<DynamicFieldInfo> GetDynamicFields()
+        public List<DynamicFieldInfo> GetFields()
         {
             return DynamicFields.Value;
         }
@@ -22,71 +22,64 @@ namespace DynamicFields.Data.Services.Fields
             var classes = typeof(FieldService).Assembly
                 .GetTypes()
                 .Where(DynamicClassInfo.IsDynamicClass)
-                .ToDictionary(GetClassInfo, GetFields);
+                .ToDictionary(DynamicFieldHelper.GetClassInfo, DynamicFieldHelper.GetFields);
 
             //classes.Add(GetClassInfo(typeof(UserInfo)), GetFields(typeof(UserInfo)));
 
             return classes.Values.SelectMany(f => f).ToList();
         }
 
-        private static DynamicClassInfo GetClassInfo(Type type)
+        public List<DynamicField> GetAll()
         {
-            var attribute = type.GetCustomAttribute<DynamicClassAttribute>();
-            if (attribute == null)
-                throw new InvalidOperationException();
-
-            return new DynamicClassInfo(type);
-        }
-
-        private static List<DynamicFieldInfo> GetFields(Type type)
-        {
-            var result = new List<DynamicFieldInfo>();
-
-            var properties = type.GetProperties().ToList();
-
-            result.AddRange(
-                properties
-                    .Where(IsDynamicField)
-                    .Select(p => new DynamicFieldInfo(type, p, null))
-            );
-
-            foreach (var property in properties)
+            using (var context = new Context())
             {
-                var propertyInfos = property.PropertyType.GetProperties();
-                var nestedProperties = propertyInfos
-                    .Where(IsDynamicField)
-                    .ToList();
-
-                result.AddRange(
-                    nestedProperties
-                        .Select(p => new DynamicFieldInfo(type, p, property))
-                );
+                return context.DynamicFields.ToList();
             }
-
-            return result;
         }
 
-        private static bool IsDynamicField(PropertyInfo propertyInfo)
+        public DynamicField Get(int id)
         {
-            return propertyInfo.CanRead &&
-                   propertyInfo.CanWrite &&
-                   propertyInfo.Name != nameof(IdentityEntity<int>.Id) &&
-                   !propertyInfo.GetGetMethod().IsVirtual &&
-                   propertyInfo.GetCustomAttribute<ForeignKeyAttribute>() == null &&
-                   IsDynamicPropertyType(propertyInfo.PropertyType);
+            using (var context = new Context())
+            {
+                return context.DynamicFields.FirstOrDefault(f => f.Id == id);
+            }
         }
 
-        private static bool IsDynamicPropertyType(Type type)
+        public DynamicField Update(DynamicField field)
         {
-            if (type.IsPrimitive) return true;
-            if (type == typeof(string)) return true;
+            using (var context = new Context())
+            {
+                var dbField = context.DynamicFields.FirstOrDefault(f => f.Id == field.Id);
+                if (dbField == null)
+                    throw new InvalidOperationException();
 
-            if (type.IsGenericType &&
-                type.GetGenericTypeDefinition() == typeof(Nullable<>) &&
-                IsDynamicPropertyType(Nullable.GetUnderlyingType(type)))
-                return true;
+                context.DynamicFields.AddOrUpdate(field);
+                context.SaveChanges();
+                return Get(field.Id);
+            }
+        }
 
-            return false;
+        public DynamicField Add(DynamicField field)
+        {
+            using (var context = new Context())
+            {
+                var dbField = context.DynamicFields.Add(field);
+                context.SaveChanges();
+                return dbField;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var context = new Context())
+            {
+                var dbField = context.DynamicFields.FirstOrDefault(f => f.Id == id);
+                if (dbField == null)
+                    throw new InvalidOperationException();
+
+                context.DynamicFields.Remove(dbField);
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -9,5 +9,11 @@ namespace DynamicFields.Data
         public DbSet<User> User { get; set; }
         public DbSet<UserInfoGeneralInfo> UserInfoGeneralInfos { get; set; }
         public DbSet<UserInfoBankInfo> UserInfoBankInfos { get; set; }
+        public DbSet<DynamicField> DynamicFields { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<UserInfo>();
+        }
     }
 }

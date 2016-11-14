@@ -13,7 +13,7 @@ namespace DynamicFields.Tests
         static void Main(string[] args)
         {
             var service = new FieldService();
-            var dynamicFieldInfos = service.GetDynamicFields();
+            var dynamicFieldInfos = service.GetFields();
         }
     }
 }
