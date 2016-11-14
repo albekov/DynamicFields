@@ -14,6 +14,9 @@ namespace DynamicFields.Tests
         {
             var service = new FieldService();
             var dynamicFieldInfos = service.GetFields();
+            var dynamicFields = service.GetAll();
+
+            service.AddFieldsFromModel();
         }
     }
 }

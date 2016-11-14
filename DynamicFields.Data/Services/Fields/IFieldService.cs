@@ -12,5 +12,6 @@ namespace DynamicFields.Data.Services.Fields
         DynamicField Update(DynamicField field);
         DynamicField Add(DynamicField field);
         void Delete(int id);
+        void AddFieldsFromModel();
     }
 }

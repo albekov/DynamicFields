@@ -81,5 +81,26 @@ namespace DynamicFields.Data.Services.Fields
                 context.SaveChanges();
             }
         }
+
+        public void AddFieldsFromModel()
+        {
+            var dynamicFields = GetAll();
+            var dynamicFieldInfos = GetAllDynamicFields();
+
+            var fieldInfos = dynamicFieldInfos
+                .Where(fi => dynamicFields.All(f => f.Reference != fi.Name))
+                .ToList();
+
+            foreach (var fi in fieldInfos)
+            {
+                var dynamicField = new DynamicField
+                {
+                    Name = fi.Name,
+                    Label = fi.Name,
+                    Reference = fi.Name
+                };
+                Add(dynamicField);
+            }
+        }
     }
 }
