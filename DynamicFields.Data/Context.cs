@@ -15,7 +15,8 @@ namespace DynamicFields.Data
         public DbSet<UserInfoGeneralInfo> UserInfoGeneralInfos { get; set; }
         public DbSet<UserInfoBankInfo> UserInfoBankInfos { get; set; }
         public DbSet<DynamicField> DynamicFields { get; set; }
-        public DbSet<DynamicForm> Forms { get; set; }
+        public DbSet<DynamicForm> DynamicForms { get; set; }
+        public DbSet<DynamicFormField> DynamicFormFields { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

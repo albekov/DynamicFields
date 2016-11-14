@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using DynamicFields.Data.Model;
@@ -12,7 +13,7 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                return context.Forms.ToList();
+                return context.DynamicForms.ToList();
             }
         }
 
@@ -20,7 +21,7 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                return context.Forms.FirstOrDefault(f => f.Id == id);
+                return context.DynamicForms.Include(f => f.FormFields).FirstOrDefault(f => f.Id == id);
             }
         }
 
@@ -28,7 +29,7 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                return context.Forms.FirstOrDefault(f => f.Name == name);
+                return context.DynamicForms.FirstOrDefault(f => f.Name == name);
             }
         }
 
@@ -36,13 +37,22 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                var dbForm = context.Forms.FirstOrDefault(f => f.Id == form.Id);
+                var dbForm = context.DynamicForms.FirstOrDefault(f => f.Id == form.Id);
                 if (dbForm == null)
                     throw new InvalidOperationException();
 
-                context.Forms.AddOrUpdate(form);
+                var formFields = form.FormFields.ToList();
+
+                context.DynamicFormFields.RemoveRange(context.DynamicFormFields.Where(f => f.FormId == form.Id));
+                context.DynamicFormFields.AddRange(formFields);
+
+                form.FormFields.Clear();
+                context.DynamicForms.AddOrUpdate(form);
+
                 context.SaveChanges();
-                return Get(form.Id);
+
+                var frm = Get(form.Id);
+                return frm;
             }
         }
 
@@ -50,7 +60,14 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                var dbForm = context.Forms.Add(form);
+                var formFields = form.FormFields.ToList();
+                form.FormFields.Clear();
+
+                var dbForm = context.DynamicForms.Add(form);
+
+                formFields.ForEach(ff => ff.Form = dbForm);
+                context.DynamicFormFields.AddRange(formFields);
+
                 context.SaveChanges();
                 return dbForm;
             }
@@ -60,11 +77,11 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
-                var dbForm = context.Forms.FirstOrDefault(f => f.Id == id);
+                var dbForm = context.DynamicForms.FirstOrDefault(f => f.Id == id);
                 if (dbForm == null)
                     throw new InvalidOperationException();
 
-                context.Forms.Remove(dbForm);
+                context.DynamicForms.Remove(dbForm);
                 context.SaveChanges();
             }
         }

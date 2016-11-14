@@ -4,14 +4,15 @@
     ViewBag.Title = "Forms";
 }
 
-<h2>Dynamic forms @Html.ActionLink("Add", "Add", null, new {@class = "btn btn-info"})</h2>
+<h2>Dynamic forms @Html.ActionLink("Add", "Edit", null, new {@class = "btn btn-info"})</h2>
 
 <table class="table table-hover">
     <thead>
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <th></th>
+        <th style="width: 20px"></th>
+        <th style="width: 20px"></th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
             <td>@f.Name</td>
             <td>@f.Description</td>
             <td>@Html.ActionLink("edit", "Edit", new {id = f.Id})</td>
+            <td>@Html.ActionLink("delete", "Delete", new {id = f.Id})</td>
         </tr>
     }
     </tbody>

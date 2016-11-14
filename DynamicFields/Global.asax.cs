@@ -29,12 +29,18 @@ namespace DynamicFields
             Mapper.Initialize(config =>
             {
                 config.CreateMap<DynamicField, FieldViewModel>();
+
                 config.CreateMap<DynamicField, EditFieldViewModel>();
                 config.CreateMap<EditFieldViewModel, DynamicField>();
 
+                config.CreateMap<FieldInfoViewModel, DynamicFieldInfo>();
                 config.CreateMap<DynamicFieldInfo, FieldInfoViewModel>();
 
+                config.CreateMap<DynamicFormField, FormFieldViewModel>();
+                config.CreateMap<FormFieldViewModel, DynamicFormField>();
+
                 config.CreateMap<DynamicForm, FormViewModel>();
+
                 config.CreateMap<DynamicForm, EditFormViewModel>();
                 config.CreateMap<EditFormViewModel, DynamicForm>();
             });

@@ -62,6 +62,12 @@ namespace DynamicFields.Controllers
             return View(vm);
         }
 
+        public ActionResult Delete(int id)
+        {
+            _fieldService.Delete(id);
+            return RedirectToAction("Index");
+        }
+
         public ActionResult AssignAll()
         {
             _fieldService.AddFieldsFromModel();

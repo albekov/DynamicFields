@@ -10,10 +10,14 @@ namespace DynamicFields.Controllers
     public class FormsController : Controller
     {
         private readonly IFormFieldService _formFieldService;
+        private readonly IFieldService _fieldService;
 
-        public FormsController(IFormFieldService formFieldService)
+        public FormsController(
+            IFormFieldService formFieldService,
+            IFieldService fieldService)
         {
             _formFieldService = formFieldService;
+            _fieldService = fieldService;
         }
 
         public ActionResult Index()
@@ -22,42 +26,35 @@ namespace DynamicFields.Controllers
             return View(vm);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id = null)
         {
-            var form = _formFieldService.Get(id);
-            var vm = Mapper.Map<EditFormViewModel>(form);
+            var vm = id.HasValue
+                ? Mapper.Map<EditFormViewModel>(_formFieldService.Get(id.Value))
+                : new EditFormViewModel();
+
+            vm.Fields = ViewModelHelper.CreateFieldsListViewModel(_fieldService);
             return View(vm);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditFormViewModel vm)
+        public ActionResult Update(EditFormViewModel vm)
         {
-            if (ModelState.IsValid)
-            {
-                var form = Mapper.Map<DynamicForm>(vm);
+            var form = Mapper.Map<DynamicForm>(vm);
+
+            if (form.Id == 0)
+                _formFieldService.Add(form);
+            else
                 _formFieldService.Update(form);
-                return RedirectToAction("Index");
-            }
-            return View(vm);
+
+            return Json(new {ok = "ok"});
         }
 
-        public ActionResult Add()
+        public ActionResult Delete(int id)
         {
-            var vm = new EditFormViewModel();
-            return View(vm);
+            _formFieldService.Delete(id);
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Add(EditFormViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                var field = Mapper.Map<DynamicForm>(vm);
-                _formFieldService.Add(field);
-                return RedirectToAction("Index");
-            }
-            return View(vm);
-        }
 
         private FormsListViewModel CreateFormsListViewModel()
         {

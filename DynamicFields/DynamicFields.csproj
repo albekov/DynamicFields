@@ -181,6 +181,9 @@
     <Content Include="Assets\Scripts\main.js">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
+    <Content Include="Assets\Scripts\main.js.map">
+      <DependentUpon>main.ts</DependentUpon>
+    </Content>
     <Content Include="Assets\Styles\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -219,8 +222,6 @@
     <Content Include="Views\Fields\Add.cshtml" />
     <Content Include="Views\Forms\Index.cshtml" />
     <Content Include="Views\Forms\Edit.cshtml" />
-    <Content Include="Views\Forms\_Edit.cshtml" />
-    <Content Include="Views\Forms\Add.cshtml" />
     <Content Include="Views\Home\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
