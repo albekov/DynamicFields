@@ -1,0 +1,29 @@
+﻿@model DynamicFields.Controllers.FieldsListViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Dynamic fields</h2>
+
+<ul>
+    @foreach (var f in Model.DbFields)
+    {
+        <li>
+            @f.Name
+            <small>-> @(f.Reference ?? "?")</small>
+        </li>
+    }
+</ul>
+
+
+<h2>Dynamic fields</h2>
+
+<ul>
+    @foreach (var f in Model.UnassignedFields)
+    {
+        <li>
+            <small>@f.Reference</small>
+        </li>
+    }
+</ul>
