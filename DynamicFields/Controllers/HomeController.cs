@@ -18,7 +18,9 @@ namespace DynamicFields.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var posts = _context.Posts.ToList();
+
+            return View(posts);
         }
     }
 }

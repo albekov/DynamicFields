@@ -1,5 +1,15 @@
-﻿@{
+﻿@using DynamicFields.Data
+@model IEnumerable<DynamicFields.Data.Model.Post>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <h1>Hello World!</h1>
+
+@foreach (var post in Model)
+{
+    <div>
+        <h1>@post.Title</h1>
+    </div>
+}
