@@ -159,6 +159,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\FieldsController.cs" />
     <Compile Include="Controllers\FormsControler.cs" />
+    <Compile Include="Controllers\ViewModelHelper.cs" />
     <Compile Include="NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />

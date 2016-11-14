@@ -8,6 +8,7 @@ using System.Web.Routing;
 using AutoMapper;
 using DynamicFields.Controllers;
 using DynamicFields.Data.Model;
+using DynamicFields.Data.Services.Fields;
 
 namespace DynamicFields
 {
@@ -29,6 +30,8 @@ namespace DynamicFields
                 config.CreateMap<DynamicField, FieldViewModel>();
                 config.CreateMap<DynamicField, EditFieldViewModel>();
                 config.CreateMap<EditFieldViewModel, DynamicField>();
+
+                config.CreateMap<DynamicFieldInfo, FieldInfoViewModel>();
 
                 config.CreateMap<DynamicForm, FormViewModel>();
                 config.CreateMap<DynamicForm, EditFormViewModel>();

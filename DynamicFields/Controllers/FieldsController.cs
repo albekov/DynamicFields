@@ -18,7 +18,7 @@ namespace DynamicFields.Controllers
 
         public ActionResult Index()
         {
-            var vm = CreateFieldsListViewModel();
+            var vm = ViewModelHelper.CreateFieldsListViewModel(_fieldService);
             return View(vm);
         }
 
@@ -67,30 +67,6 @@ namespace DynamicFields.Controllers
             return RedirectToAction("Index");
         }
 
-        private FieldsListViewModel CreateFieldsListViewModel()
-        {
-            var vm = new FieldsListViewModel();
-
-            var dynamicFieldInfos = _fieldService.GetFields();
-            var dynamicFields = _fieldService.GetAll();
-
-            vm.DbFields = dynamicFields
-                .Select(df =>
-                {
-                    var fvm = Mapper.Map<FieldViewModel>(df);
-                    fvm.ValidReference = dynamicFieldInfos.Any(i => i.Name == df.Reference);
-                    return fvm;
-                })
-                .ToList();
-
-            vm.UnassignedFields = dynamicFieldInfos
-                .Where(dfi => !dynamicFields.Any(df => df.Reference == dfi.Name))
-                .Select(dfi => new FieldViewModel {Reference = dfi.Name})
-                .ToList();
-
-            return vm;
-        }
-
         private List<SelectListItem> GetReferences()
         {
             var items = _fieldService.GetFields()
@@ -98,6 +74,12 @@ namespace DynamicFields.Controllers
                 .ToList();
             return items;
         }
+    }
+
+    public class FieldInfoViewModel
+    {
+        public string Name { get; set; }
+        public string TypeName { get; set; }
     }
 
     public class EditFieldViewModel
@@ -116,12 +98,12 @@ namespace DynamicFields.Controllers
         public string Name { get; set; }
         public string Label { get; set; }
         public string Reference { get; set; }
-        public bool ValidReference { get; set; }
+        public FieldInfoViewModel ReferenceField { get; set; }
     }
 
     public class FieldsListViewModel
     {
         public List<FieldViewModel> DbFields { get; set; }
-        public List<FieldViewModel> UnassignedFields { get; set; }
+        public List<FieldInfoViewModel> UnassignedFields { get; set; }
     }
 }

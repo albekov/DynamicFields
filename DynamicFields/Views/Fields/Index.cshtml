@@ -22,7 +22,7 @@
             <td>@f.Name</td>
             <td>@f.Label</td>
             <td
-                @if (!f.ValidReference)
+                @if (f.ReferenceField == null)
                 {
                     @:style="color: red" title="Invalid reference"
                 }
@@ -44,8 +44,8 @@
         @foreach (var f in Model.UnassignedFields)
         {
             <li>
-                @Html.ActionLink("Assign", "Add", new {reference = f.Reference})
-                @f.Reference
+                @Html.ActionLink("Assign", "Add", new {reference = f.Name})
+                @f.Name
             </li>
         }
     </ul>
