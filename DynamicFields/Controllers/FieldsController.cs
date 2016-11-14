@@ -16,7 +16,7 @@ namespace DynamicFields.Controllers
             _fieldService = fieldService;
         }
 
-        public ActionResult List()
+        public ActionResult Index()
         {
             var vm = CreateFieldsListViewModel();
             return View(vm);
@@ -37,7 +37,7 @@ namespace DynamicFields.Controllers
             {
                 var field = Mapper.Map<DynamicField>(vm);
                 _fieldService.Update(field);
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
             return View(vm);
         }
@@ -56,7 +56,7 @@ namespace DynamicFields.Controllers
             {
                 var field = Mapper.Map<DynamicField>(vm);
                 _fieldService.Add(field);
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
             return View(vm);
         }
@@ -64,7 +64,7 @@ namespace DynamicFields.Controllers
         public ActionResult AssignAll()
         {
             _fieldService.AddFieldsFromModel();
-            return RedirectToAction("List");
+            return RedirectToAction("Index");
         }
 
         private FieldsListViewModel CreateFieldsListViewModel()

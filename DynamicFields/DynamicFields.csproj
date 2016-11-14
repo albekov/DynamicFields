@@ -204,7 +204,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="Project_Readme.html" />
-    <Content Include="Views\Fields\List.cshtml" />
+    <Content Include="Views\Fields\Index.cshtml" />
     <Content Include="Views\Fields\Edit.cshtml" />
     <Content Include="Views\Fields\_Edit.cshtml" />
     <Content Include="Views\Fields\Add.cshtml" />
