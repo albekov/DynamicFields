@@ -89,6 +89,7 @@
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Services\Fields\IFormFieldService.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

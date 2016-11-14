@@ -60,9 +60,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DynamicFields.Data\DynamicFields.Data.csproj">
       <Project>{861c57dc-8beb-4e27-a60b-a9b91f18a590}</Project>
       <Name>DynamicFields.Data</Name>

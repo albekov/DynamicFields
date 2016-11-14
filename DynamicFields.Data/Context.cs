@@ -5,6 +5,11 @@ namespace DynamicFields.Data
 {
     public class Context : DbContext
     {
+        public Context()
+            : base("DefaultConnection")
+        {
+        }
+
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserInfoGeneralInfo> UserInfoGeneralInfos { get; set; }

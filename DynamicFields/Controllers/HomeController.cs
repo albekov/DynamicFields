@@ -4,23 +4,56 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DynamicFields.Data;
+using DynamicFields.Data.Model;
+using DynamicFields.Data.Services;
 
 namespace DynamicFields.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly Context _context;
+        private readonly IUserService _userService;
 
-        public HomeController(Context context)
+        public HomeController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
 
         public ActionResult Index()
         {
-            var posts = _context.Posts.ToList();
+            var users = _userService.GetUsers();
 
-            return View(posts);
+            var vm = new LoginViewModel();
+            vm.Users = users.Select(u => new SelectListItem {Text = u.Login, Value = u.Id.ToString()}).ToList();
+            return View(vm);
         }
+
+        public ActionResult Login(LoginViewModel vm)
+        {
+            Session["userId"] = vm.Id;
+            return RedirectToAction("Index", "Fields");
+        }
+
+        public ActionResult LoginPartial()
+        {
+            string login = null;
+            var id = Session["userId"];
+            if(id!=null)
+            {
+                login = _userService.Get((int) id).Login;
+            }
+            return PartialView("_LoginPartial", login);
+        }
+
+        public ActionResult Logout()
+        {
+            Session["userId"] = null;
+            return RedirectToAction("Index");
+        }
+    }
+
+    public class LoginViewModel
+    {
+        public int Id { get; set; }
+        public List<SelectListItem> Users { get; set; }
     }
 }

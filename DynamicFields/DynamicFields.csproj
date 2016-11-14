@@ -213,6 +213,7 @@
     <Content Include="Views\Forms\Edit.cshtml" />
     <Content Include="Views\Forms\_Edit.cshtml" />
     <Content Include="Views\Forms\Add.cshtml" />
+    <Content Include="Views\Home\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Assets\Scripts\main.ts" />

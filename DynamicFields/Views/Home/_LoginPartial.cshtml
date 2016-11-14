@@ -1,0 +1,11 @@
+﻿@model string
+
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <li><a href="#">@Model</a></li>
+    <li>@Html.ActionLink("Sign Out", "Logout", "Home")</li>
+}
