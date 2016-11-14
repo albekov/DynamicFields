@@ -54,9 +54,16 @@
     <Compile Include="Migrations\201611141004155_AddPosts.Designer.cs">
       <DependentUpon>201611141004155_AddPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611141050431_AddUserAndInfo.cs" />
+    <Compile Include="Migrations\201611141050431_AddUserAndInfo.Designer.cs">
+      <DependentUpon>201611141050431_AddUserAndInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IdentityEntity.cs" />
     <Compile Include="Model\Post.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserInfoBankInfo.cs" />
+    <Compile Include="Model\UserInfoGeneralInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611141004155_AddPosts.resx">
       <DependentUpon>201611141004155_AddPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141050431_AddUserAndInfo.resx">
+      <DependentUpon>201611141050431_AddUserAndInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
