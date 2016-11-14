@@ -184,12 +184,21 @@
     <Content Include="Assets\Scripts\main.js.map">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
+    <Content Include="Assets\Styles\bootstrap.min.css" />
     <Content Include="Assets\Styles\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
     <Content Include="Assets\Styles\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Assets\Vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\Vendor\bootstrap\js\npm.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -211,6 +220,14 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Assets\Styles\main.less" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
