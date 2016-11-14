@@ -72,7 +72,7 @@ namespace DynamicFields
 
             foreach (var service in types)
             {
-                var interfaces = serviceInterface
+                var interfaces = service
                     .GetInterfaces()
                     .Where(i => i != serviceInterface)
                     .ToList();
