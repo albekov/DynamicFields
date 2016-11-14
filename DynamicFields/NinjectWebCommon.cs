@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Web;
 using DynamicFields;
+using DynamicFields.Data.Services;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -61,6 +63,23 @@ namespace DynamicFields
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var serviceInterface = typeof(IService);
+
+            var types = serviceInterface.Assembly
+                .GetTypes()
+                .Where(t => !t.IsInterface && serviceInterface.IsAssignableFrom(t))
+                .ToList();
+
+            foreach (var service in types)
+            {
+                var interfaces = serviceInterface
+                    .GetInterfaces()
+                    .Where(i => i != serviceInterface)
+                    .ToList();
+
+                foreach (var @interface in interfaces)
+                    kernel.Bind(@interface).To(service).InSingletonScope();
+            }
         }
     }
 }

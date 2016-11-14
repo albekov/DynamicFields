@@ -65,6 +65,13 @@
     <Compile Include="Model\UserInfoBankInfo.cs" />
     <Compile Include="Model\UserInfoGeneralInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Fields\DynamicClassAttribute.cs" />
+    <Compile Include="Services\Fields\DynamicClassInfo.cs" />
+    <Compile Include="Services\Fields\DynamicFieldInfo.cs" />
+    <Compile Include="Services\Fields\FieldService.cs" />
+    <Compile Include="Services\Fields\IFieldService.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Services\IService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

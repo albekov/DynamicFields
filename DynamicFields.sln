@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFields", "DynamicFie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFields.Data", "DynamicFields.Data\DynamicFields.Data.csproj", "{861C57DC-8BEB-4E27-A60B-A9B91F18A590}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFields.Tests", "DynamicFields.Tests\DynamicFields.Tests.csproj", "{E064C573-29CC-432A-B87B-DFFC1F73F1CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{861C57DC-8BEB-4E27-A60B-A9B91F18A590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861C57DC-8BEB-4E27-A60B-A9B91F18A590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861C57DC-8BEB-4E27-A60B-A9B91F18A590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E064C573-29CC-432A-B87B-DFFC1F73F1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E064C573-29CC-432A-B87B-DFFC1F73F1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E064C573-29CC-432A-B87B-DFFC1F73F1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E064C573-29CC-432A-B87B-DFFC1F73F1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
