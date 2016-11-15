@@ -7,7 +7,11 @@ var EditFormController = (function () {
         this.form = form;
     }
     EditFormController.prototype.save = function () {
-        this.$http.post(saveFormUrl, this.form);
+        var _this = this;
+        this.saving = true;
+        this.$http
+            .post(saveFormUrl, this.form)
+            .then(function () { return _this.saving = false; });
     };
     EditFormController.prototype.addHeadline = function () {
         this.form.FormFields.push({ FieldType: 0, FormId: this.form.Id, Label: 'headline text' });

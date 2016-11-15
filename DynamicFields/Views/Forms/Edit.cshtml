@@ -12,18 +12,21 @@
             <h2 class="col-sm-8">Edit '{{ c.form.Name }}' form</h2>
         </div>
         <div class="col-sm-4">
-            <a class="btn btn-info form-control" ng-click="c.save()">SAVE</a>
+            <a class="btn btn-info form-control" ng-click="c.save()">
+                SAVE
+                <span class="glyphicon glyphicon-time" aria-hidden="true" ng-show="c.saving"></span>
+            </a>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-sm-4">
             <label>Name</label>
-            <input type="text" ng-model="c.form.Name" class="form-control"/>
+            <input type="text" ng-model="c.form.Name" class="form-control" />
         </div>
         <div class="form-group col-sm-8">
             <label>Description</label>
-            <input type="text" ng-model="c.form.Description" class="form-control"/>
+            <input type="text" ng-model="c.form.Description" class="form-control" />
         </div>
     </div>
 
@@ -49,7 +52,7 @@
                 </a>
             </div>
         </div>
-        
+
         <div class="col-sm-9" ng-init="fields = c.form.FormFields">
             <div ng-repeat="f in fields" ng-init="idx = $index">
                 <div class="form-field">
@@ -84,7 +87,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     label:
-                                    <input type="text" ng-model="f.Label" class="form-control"/>
+                                    <input type="text" ng-model="f.Label" class="form-control" />
                                 </div>
                             </div>
                         </div>

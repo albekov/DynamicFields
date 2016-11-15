@@ -18,7 +18,10 @@ class EditFormController {
     }
 
     save() {
-        this.$http.post(saveFormUrl, this.form);
+        this.saving = true;
+        this.$http
+            .post(saveFormUrl, this.form)
+            .then(() => this.saving = false);
     }
 
     addHeadline() {
@@ -56,6 +59,7 @@ class EditFormController {
 
     form: IFormData;
     foo: any;
+    saving: boolean;
 }
 
 app.controller('EditForm', EditFormController);
