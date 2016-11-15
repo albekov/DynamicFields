@@ -49,12 +49,12 @@ class EditFormController {
 
     upField(f) {
         let idx = this.form.FormFields.indexOf(f);
-        this.form.FormFields.move(idx, idx - 1);
+        move(this.form.FormFields,idx, idx - 1);
     }
 
     downField(f) {
         let idx = this.form.FormFields.indexOf(f);
-        this.form.FormFields.move(idx, idx + 1);
+        move(this.form.FormFields, idx, idx + 1);
     }
 
     form: IFormData;
@@ -64,13 +64,13 @@ class EditFormController {
 
 app.controller('EditForm', EditFormController);
 
-Array.prototype['move'] = function (old_index, new_index) {
-    if (new_index >= this.length) {
-        var k = new_index - this.length;
+function move (arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length;
         while ((k--) + 1) {
             this.push(undefined);
         }
     }
-    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
-    return this; // for testing purposes
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr;
 };
