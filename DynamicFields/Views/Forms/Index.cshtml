@@ -12,16 +12,14 @@
         <th>Name</th>
         <th>Description</th>
         <th style="width: 20px"></th>
-        <th style="width: 20px"></th>
     </tr>
     </thead>
     <tbody>
     @foreach (var f in Model.Forms)
     {
         <tr>
-            <td>@f.Name</td>
+            <td>@Html.ActionLink(f.Name, "Edit", new { id = f.Id })</td>
             <td>@f.Description</td>
-            <td>@Html.ActionLink("edit", "Edit", new {id = f.Id})</td>
             <td>@Html.ActionLink("delete", "Delete", new {id = f.Id})</td>
         </tr>
     }

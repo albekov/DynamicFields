@@ -22,12 +22,36 @@ class EditFormController {
     }
 
     addHeadline() {
-        this.form.FormFields.push({ FieldType: 0, Label: 'headline text', FormId: this.form.Id });
+        this.form.FormFields.push({ FieldType: 0, FormId: this.form.Id, Label: 'headline text' });
     }
 
     addField(f) {
-        //this.form.FormFields.push({ FieldType: 0, Label: 'headline text' });
-        console.log('add', f);
+        //console.log(f);
+        this.form.FormFields.push({
+            FieldType: 1,
+            FormId: this.form.Id,
+            Label: f.Label,
+            FieldId: f.Id,
+            IsRequired: true,
+            ShowLabel: true,
+            Reference: f.Reference
+        });
+    }
+
+    deleteField(f) {
+        let idx = this.form.FormFields.indexOf(f);
+        if (idx > -1)
+            this.form.FormFields.splice(idx, 1);
+    }
+
+    upField(f) {
+        let idx = this.form.FormFields.indexOf(f);
+        this.form.FormFields.move(idx, idx - 1);
+    }
+
+    downField(f) {
+        let idx = this.form.FormFields.indexOf(f);
+        this.form.FormFields.move(idx, idx + 1);
     }
 
     form: IFormData;
@@ -35,3 +59,14 @@ class EditFormController {
 }
 
 app.controller('EditForm', EditFormController);
+
+Array.prototype['move'] = function (old_index, new_index) {
+    if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+            this.push(undefined);
+        }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+};

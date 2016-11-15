@@ -10,3 +10,22 @@
 .x-ng-cloak {
   display: none !important;
 }
+.form-field {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.form-field .updown {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.form-field .controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.form-field .field-data {
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 0 30px;
+  padding: 0 5px 15px 0;
+}
