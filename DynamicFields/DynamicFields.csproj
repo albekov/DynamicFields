@@ -26,7 +26,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -155,7 +156,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Models\EditFieldViewModel.cs" />
     <Compile Include="Models\EditFormViewModel.cs" />
@@ -178,27 +178,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Scripts\main.js">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="Assets\Scripts\main.js.map">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="Assets\Styles\bootstrap.min.css" />
-    <Content Include="Assets\Styles\main.css">
-      <DependentUpon>main.less</DependentUpon>
-    </Content>
-    <Content Include="Assets\Styles\main.min.css">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.css" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.min.css" />
-    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Assets\Vendor\bootstrap\js\bootstrap.js" />
-    <Content Include="Assets\Vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Assets\Vendor\bootstrap\js\npm.js" />
+    <Content Include="app\*" />
+    <Content Include="bundle\*" />
+    <Content Include="typings\*" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -213,25 +195,18 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Assets\Styles\main.less" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Assets\Vendor\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\Vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="package.json" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Fields\Index.cshtml" />
     <Content Include="Views\Fields\Edit.cshtml" />
@@ -240,11 +215,8 @@
     <Content Include="Views\Forms\Index.cshtml" />
     <Content Include="Views\Forms\Edit.cshtml" />
     <Content Include="Views\Home\_LoginPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Assets\Scripts\main.ts" />
-    <TypeScriptCompile Include="Assets\Scripts\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Assets\Scripts\typings\jquery\jquery.d.ts" />
+    <Content Include="tsconfig.json" />
+    <Content Include="typings.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

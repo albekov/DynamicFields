@@ -1,22 +1,35 @@
-/// <reference path="typings/angularjs/angular.d.ts" />
-var app = angular.module('form', []);
-var EditFormController = (function () {
-    function EditFormController($http) {
-        this.$http = $http;
-        this.foo = 'bar';
+﻿/// <reference path="../typings/globals/angular/index.d.ts" />
+
+import './main.less';
+
+declare var form: any;
+declare var saveFormUrl: string;
+
+let app = angular.module('form', []);
+
+interface IFormData {
+    Id: number;
+    FormFields: any[];
+}
+
+class EditFormController {
+    static $inject = ['$http'];
+    constructor(private $http: ng.IHttpService) {
         this.form = form;
     }
-    EditFormController.prototype.save = function () {
-        var _this = this;
+
+    save() {
         this.saving = true;
         this.$http
             .post(saveFormUrl, this.form)
-            .then(function () { return _this.saving = false; });
-    };
-    EditFormController.prototype.addHeadline = function () {
+            .then(() => this.saving = false);
+    }
+
+    addHeadline() {
         this.form.FormFields.push({ FieldType: 0, FormId: this.form.Id, Label: 'headline text' });
-    };
-    EditFormController.prototype.addField = function (f) {
+    }
+
+    addField(f) {
         //console.log(f);
         this.form.FormFields.push({
             FieldType: 1,
@@ -27,24 +40,31 @@ var EditFormController = (function () {
             ShowLabel: true,
             Reference: f.Reference
         });
-    };
-    EditFormController.prototype.deleteField = function (f) {
-        var idx = this.form.FormFields.indexOf(f);
+    }
+
+    deleteField(f) {
+        let idx = this.form.FormFields.indexOf(f);
         if (idx > -1)
             this.form.FormFields.splice(idx, 1);
-    };
-    EditFormController.prototype.upField = function (f) {
-        var idx = this.form.FormFields.indexOf(f);
+    }
+
+    upField(f) {
+        let idx = this.form.FormFields.indexOf(f);
         move(this.form.FormFields, idx, idx - 1);
-    };
-    EditFormController.prototype.downField = function (f) {
-        var idx = this.form.FormFields.indexOf(f);
+    }
+
+    downField(f) {
+        let idx = this.form.FormFields.indexOf(f);
         move(this.form.FormFields, idx, idx + 1);
-    };
-    EditFormController.$inject = ['$http'];
-    return EditFormController;
-}());
+    }
+
+    form: IFormData;
+    foo: any;
+    saving: boolean;
+}
+
 app.controller('EditForm', EditFormController);
+
 function move(arr, old_index, new_index) {
     if (new_index >= arr.length) {
         var k = new_index - arr.length;
@@ -54,6 +74,4 @@ function move(arr, old_index, new_index) {
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr;
-}
-;
-//# sourceMappingURL=main.js.map
+};

@@ -1,0 +1,30 @@
+{
+  "name": "DyamicFields",
+  "version": "0.0.1",
+  "description": "DyamicFields",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typings": "typings install",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "css-raw-loader": "^0.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.3",
+    "webpack": "^1.13.2",
+    "webpack-notifier": "^1.4.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
