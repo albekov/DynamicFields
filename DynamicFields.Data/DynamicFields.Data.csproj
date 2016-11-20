@@ -73,6 +73,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\DynamicField.cs" />
     <Compile Include="Model\DynamicForm.cs" />
+    <Compile Include="Model\DynamicFormField.cs" />
+    <Compile Include="Model\FieldType.cs" />
     <Compile Include="Model\IdentityEntity.cs" />
     <Compile Include="Model\Post.cs" />
     <Compile Include="Model\User.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Services\Fields\IFormFieldService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

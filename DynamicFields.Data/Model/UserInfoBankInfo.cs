@@ -6,6 +6,7 @@ namespace DynamicFields.Data.Model
     {
         [ForeignKey("User")]
         public int UserId { get; set; }
+
         public virtual User User { get; set; }
 
         public bool? PropertyOwner { get; set; }

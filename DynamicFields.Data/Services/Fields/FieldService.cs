@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Net.Mime;
 using DynamicFields.Data.Model;
 
 namespace DynamicFields.Data.Services.Fields
@@ -15,18 +14,6 @@ namespace DynamicFields.Data.Services.Fields
         public List<DynamicFieldInfo> GetFields()
         {
             return DynamicFields.Value;
-        }
-
-        private static List<DynamicFieldInfo> GetAllDynamicFields()
-        {
-            var classes = typeof(FieldService).Assembly
-                .GetTypes()
-                .Where(DynamicClassInfo.IsDynamicClass)
-                .ToDictionary(DynamicFieldHelper.GetClassInfo, DynamicFieldHelper.GetFields);
-
-            //classes.Add(GetClassInfo(typeof(UserInfo)), GetFields(typeof(UserInfo)));
-
-            return classes.Values.SelectMany(f => f).ToList();
         }
 
         public List<DynamicField> GetAll()
@@ -109,6 +96,18 @@ namespace DynamicFields.Data.Services.Fields
                 };
                 Add(dynamicField);
             }
+        }
+
+        private static List<DynamicFieldInfo> GetAllDynamicFields()
+        {
+            var classes = typeof(FieldService).Assembly
+                .GetTypes()
+                .Where(DynamicClassInfo.IsDynamicClass)
+                .ToDictionary(DynamicFieldHelper.GetClassInfo, DynamicFieldHelper.GetFields);
+
+            //classes.Add(GetClassInfo(typeof(UserInfo)), GetFields(typeof(UserInfo)));
+
+            return classes.Values.SelectMany(f => f).ToList();
         }
     }
 }

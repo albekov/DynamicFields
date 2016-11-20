@@ -5,12 +5,6 @@ namespace DynamicFields.Data.Services.Fields
 {
     public class DynamicFieldInfo
     {
-        public Type ClassType { get; set; }
-        public PropertyInfo Property { get; set; }
-        public PropertyInfo BaseProperty { get; set; }
-        public string Name { get; set; }
-        public Type Type { get; set; }
-
         public DynamicFieldInfo(Type classType, PropertyInfo property, PropertyInfo baseProperty)
         {
             ClassType = classType;
@@ -22,6 +16,12 @@ namespace DynamicFields.Data.Services.Fields
                    $"{Property.Name}";
             Type = property.PropertyType;
         }
+
+        public Type ClassType { get; set; }
+        public PropertyInfo Property { get; set; }
+        public PropertyInfo BaseProperty { get; set; }
+        public string Name { get; set; }
+        public Type Type { get; set; }
 
         public override string ToString()
         {

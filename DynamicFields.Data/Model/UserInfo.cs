@@ -1,4 +1,3 @@
-using System;
 using DynamicFields.Data.Services.Fields;
 
 namespace DynamicFields.Data.Model
