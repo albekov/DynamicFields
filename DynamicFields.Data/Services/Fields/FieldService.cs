@@ -48,6 +48,8 @@ namespace DynamicFields.Data.Services.Fields
                 if (dbField == null)
                     throw new InvalidOperationException();
 
+                field.DateCreated = dbField.DateCreated;
+                field.DateUpdated = DateTime.UtcNow;
                 context.DynamicFields.AddOrUpdate(field);
                 context.SaveChanges();
                 return Get(field.Id);
@@ -58,6 +60,8 @@ namespace DynamicFields.Data.Services.Fields
         {
             using (var context = new Context())
             {
+                field.DateCreated = DateTime.UtcNow;
+                field.DateUpdated = DateTime.UtcNow;
                 var dbField = context.DynamicFields.Add(field);
                 context.SaveChanges();
                 return dbField;

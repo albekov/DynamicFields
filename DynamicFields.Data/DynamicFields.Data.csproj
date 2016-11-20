@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201611141833438_AddDynamicForm.Designer.cs">
       <DependentUpon>201611141833438_AddDynamicForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611201959159_AddDatesToModels.cs" />
+    <Compile Include="Migrations\201611201959159_AddDatesToModels.Designer.cs">
+      <DependentUpon>201611201959159_AddDatesToModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\DynamicField.cs" />
     <Compile Include="Model\DynamicForm.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611141833438_AddDynamicForm.resx">
       <DependentUpon>201611141833438_AddDynamicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611201959159_AddDatesToModels.resx">
+      <DependentUpon>201611201959159_AddDatesToModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -47,6 +47,8 @@ namespace DynamicFields.Data.Services.Fields
                 context.DynamicFormFields.AddRange(formFields);
 
                 form.FormFields.Clear();
+                form.DateCreated = dbForm.DateCreated;
+                form.DateUpdated = DateTime.UtcNow;
                 context.DynamicForms.AddOrUpdate(form);
 
                 context.SaveChanges();
@@ -62,7 +64,8 @@ namespace DynamicFields.Data.Services.Fields
             {
                 var formFields = form.FormFields.ToList();
                 form.FormFields.Clear();
-
+                form.DateCreated = DateTime.UtcNow;
+                form.DateUpdated = DateTime.UtcNow;
                 var dbForm = context.DynamicForms.Add(form);
 
                 formFields.ForEach(ff => ff.Form = dbForm);
