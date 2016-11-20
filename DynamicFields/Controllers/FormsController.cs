@@ -5,6 +5,7 @@ using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
 using DynamicFields.Helpers;
 using DynamicFields.Models;
+using Newtonsoft.Json;
 
 namespace DynamicFields.Controllers
 {
@@ -70,6 +71,18 @@ namespace DynamicFields.Controllers
         public ActionResult SaveForm()
         {
             return Content("Saved!");
+        }
+
+        [HttpPost]
+        public ActionResult Info(int formId)
+        {
+            var form = _formFieldService.Get(formId);
+            var obj = new
+            {
+                DateUpdated = form.DateUpdated
+            };
+            var str = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            return Content(str, "application/json");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using DynamicFields.Helpers
+@using Newtonsoft.Json
 @model DynamicFields.Controllers.PreviewFormViewModel<DynamicFields.Data.Model.UserInfo>
 
 @{
@@ -27,7 +28,7 @@
             {
                 <div class="form-group">
                     <label>@field.Label:</label>
-                    @field.Render(new { @class = "form-control" })
+                    @field.Render(new {@class = "form-control"})
                 </div>
             }
         }
@@ -35,5 +36,28 @@
         <input type="submit" value="Save" class="btn btn-default"/>
     }
 </div>
+
+@section scripts{
+    <script>
+        $(function() {
+            var updated = @Html.Raw(JsonConvert.SerializeObject(Model.Form.DateUpdated));
+            var update = function() {
+                $.ajax({
+                    url: '@Url.Action("Info", "Forms", new {formId = Model.Form.Id})',
+                    method: 'POST',
+                    success: function(result) {
+                        if (updated !== result.DateUpdated) {
+                            window.location = window.location;
+                        } else {
+                            setTimeout(update, 1000);
+                        }
+                    }
+                });
+            };
+            update();
+        });
+    </script>
+}
+
 </body>
 </html>
