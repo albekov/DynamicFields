@@ -52,13 +52,15 @@ namespace DynamicFields.Data.Services.Fields
                    propertyInfo.CanWrite &&
                    propertyInfo.Name != nameof(IdentityEntity<int>.Id) &&
                    !propertyInfo.GetGetMethod().IsVirtual &&
-                   propertyInfo.GetCustomAttribute<ForeignKeyAttribute>() == null && IsDynamicPropertyType(propertyInfo.PropertyType);
+                   propertyInfo.GetCustomAttribute<ForeignKeyAttribute>() == null &&
+                   IsDynamicPropertyType(propertyInfo.PropertyType);
         }
 
         private static bool IsDynamicPropertyType(Type type)
         {
             if (type.IsPrimitive) return true;
             if (type == typeof(string)) return true;
+            if (type == typeof(DateTime)) return true;
 
             if (type.IsGenericType &&
                 type.GetGenericTypeDefinition() == typeof(Nullable<>) && IsDynamicPropertyType(Nullable.GetUnderlyingType(type)))

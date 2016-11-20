@@ -41,7 +41,7 @@ namespace DynamicFields.Tests
         {
             var type = typeof(DynamicTestClass);
             var fieldInfos = type.GetDynamicFields();
-            Assert.Equal(fieldInfos.Count, 2);
+            Assert.Equal(fieldInfos.Count, 5);
         }
 
         class NotDynamicTestClass { }
@@ -50,8 +50,10 @@ namespace DynamicFields.Tests
         class DynamicTestClass
         {
             public int Prop1 { get; set; }
-            public string Prop2 { get; set; }
-            public DateTime Prop3 { get; set; }
+            public int? Prop2 { get; set; }
+            public string Prop3 { get; set; }
+            public DateTime Prop4 { get; set; }
+            public DateTime? Prop5 { get; set; }
         }
     }
 }
