@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E064C573-29CC-432A-B87B-DFFC1F73F1CF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DynamicFields.Tests</RootNamespace>
     <AssemblyName>DynamicFields.Tests</AssemblyName>
@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicClassInfoTests.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

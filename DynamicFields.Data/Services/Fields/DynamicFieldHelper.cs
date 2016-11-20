@@ -7,9 +7,9 @@ using DynamicFields.Data.Model;
 
 namespace DynamicFields.Data.Services.Fields
 {
-    internal static class DynamicFieldHelper
+    public static class DynamicFieldHelper
     {
-        public static DynamicClassInfo GetClassInfo(Type type)
+        public static DynamicClassInfo GetDynamicClassInfo(this Type type)
         {
             var attribute = type.GetCustomAttribute<DynamicClassAttribute>();
             if (attribute == null)
@@ -18,7 +18,7 @@ namespace DynamicFields.Data.Services.Fields
             return new DynamicClassInfo(type);
         }
 
-        public static List<DynamicFieldInfo> GetFields(Type type)
+        public static List<DynamicFieldInfo> GetDynamicFields(this Type type)
         {
             var result = new List<DynamicFieldInfo>();
 

@@ -1,5 +1,7 @@
-﻿using DynamicFields.Data.Services.Fields;
+﻿using System;
+using DynamicFields.Data.Services.Fields;
 using Xunit;
+using Xunit.Sdk;
 
 namespace DynamicFields.Tests
 {
@@ -11,15 +13,45 @@ namespace DynamicFields.Tests
             Assert.Equal(new DynamicClassInfo(GetType()).Type, GetType());
         }
 
-        [Fact]
-        public void IsDynamicClassTest()
+        [Theory]
+        [InlineData(typeof(DynamicTestClass), true)]
+        [InlineData(typeof(NotDynamicTestClass), false)]
+        public void IsDynamicClassTest(Type type, bool isDynamic)
         {
-            Assert.False(DynamicClassInfo.IsDynamicClass(typeof(NotDynamicTestClass)));
-            Assert.True(DynamicClassInfo.IsDynamicClass(typeof(DynamicTestClass)));
+            Assert.Equal(DynamicClassInfo.IsDynamicClass(type), isDynamic);
+        }
+
+        [Fact]
+        public void GetInfoFromDynamicClassTest()
+        {
+            var type = typeof(DynamicTestClass);
+            var info = type.GetDynamicClassInfo();
+            Assert.Equal(type, info.Type);
+        }
+
+        [Fact]
+        public void GetInfoFromNotDynamicClassTest()
+        {
+            var type = typeof(NotDynamicTestClass);
+            Assert.Throws<InvalidOperationException>(() => type.GetDynamicClassInfo());
+        }
+
+        [Fact]
+        public void DynamicPropertiesTest()
+        {
+            var type = typeof(DynamicTestClass);
+            var fieldInfos = type.GetDynamicFields();
+            Assert.Equal(fieldInfos.Count, 2);
         }
 
         class NotDynamicTestClass { }
+
         [DynamicClass]
-        class DynamicTestClass { }
+        class DynamicTestClass
+        {
+            public int Prop1 { get; set; }
+            public string Prop2 { get; set; }
+            public DateTime Prop3 { get; set; }
+        }
     }
 }

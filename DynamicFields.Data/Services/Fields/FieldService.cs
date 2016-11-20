@@ -103,7 +103,7 @@ namespace DynamicFields.Data.Services.Fields
             var classes = typeof(FieldService).Assembly
                 .GetTypes()
                 .Where(DynamicClassInfo.IsDynamicClass)
-                .ToDictionary(DynamicFieldHelper.GetClassInfo, DynamicFieldHelper.GetFields);
+                .ToDictionary(DynamicFieldHelper.GetDynamicClassInfo, DynamicFieldHelper.GetDynamicFields);
 
             //classes.Add(GetClassInfo(typeof(UserInfo)), GetFields(typeof(UserInfo)));
 
