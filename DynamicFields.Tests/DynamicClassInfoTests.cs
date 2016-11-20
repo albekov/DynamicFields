@@ -1,7 +1,6 @@
 ﻿using System;
 using DynamicFields.Data.Services.Fields;
 using Xunit;
-using Xunit.Sdk;
 
 namespace DynamicFields.Tests
 {

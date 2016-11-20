@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
+using DynamicFields.Helpers;
 using DynamicFields.Models;
 
 namespace DynamicFields.Controllers
@@ -64,6 +65,11 @@ namespace DynamicFields.Controllers
             vm.Forms = Mapper.Map<List<FormViewModel>>(forms);
 
             return vm;
+        }
+
+        public ActionResult SaveForm()
+        {
+            return Content("Saved!");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using DynamicFields.Data.Model;
 using DynamicFields.Data.Services.Fields;
+using DynamicFields.Helpers;
 using DynamicFields.Models;
 
 namespace DynamicFields.Controllers

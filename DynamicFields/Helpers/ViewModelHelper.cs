@@ -3,7 +3,7 @@ using AutoMapper;
 using DynamicFields.Data.Services.Fields;
 using DynamicFields.Models;
 
-namespace DynamicFields.Controllers
+namespace DynamicFields.Helpers
 {
     public static class ViewModelHelper
     {

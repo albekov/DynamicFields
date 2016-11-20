@@ -1,0 +1,39 @@
+﻿@using DynamicFields.Helpers
+@model DynamicFields.Controllers.PreviewFormViewModel<DynamicFields.Data.Model.UserInfo>
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    @using (var form = Html.BeginDynamicForm("SaveForm", "Forms", Model.Form, Model.Data, new {@class = "form"}))
+    {
+        <h1>@form.Name</h1>
+        <blockquote>@form.Description</blockquote>
+        foreach (var field in form.Fields())
+        {
+            if (field.IsHeadline)
+            {
+                <h2>@field.Render()</h2>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label>@field.Label:</label>
+                    @field.Render(new { @class = "form-control" })
+                </div>
+            }
+        }
+
+        <input type="submit" value="Save" class="btn btn-default"/>
+    }
+</div>
+</body>
+</html>
