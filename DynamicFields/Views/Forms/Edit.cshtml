@@ -21,11 +21,11 @@
 
     <div class="row">
         <div class="form-group col-sm-4">
-            <label>Name</label>
+            <label>Name:</label>
             <input type="text" ng-model="c.form.Name" class="form-control" />
         </div>
         <div class="form-group col-sm-8">
-            <label>Description</label>
+            <label>Description:</label>
             <input type="text" ng-model="c.form.Description" class="form-control" />
         </div>
     </div>
@@ -54,47 +54,63 @@
         </div>
 
         <div class="col-sm-9" ng-init="fields = c.form.FormFields">
-            <div ng-repeat="f in fields" ng-init="idx = $index">
-                <div class="form-field">
-                    <div class="updown">
-                        <div ng-show="$index > 0">
-                            <a href="" ng-click="c.upField(f)"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
-                        </div>
-                        <div ng-show="$index < fields.length-1">
-                            <a href="" ng-click="c.downField(f)"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
-                        </div>
+            <div ng-repeat="f in fields" ng-init="idx = $index; dbf = c.getField(f.FieldId)" class="form-field">
+                <div class="updown">
+                    <div>
+                        <a href="" ng-click="c.downField(f)" ng-show="$index < fields.length-1">
+                            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        </a>
                     </div>
-                    <div class="field-data">
-                        <div ng-show="f.FieldType===0">
-                            <strong>headline</strong>
+                    <div>
+                        <a href="" ng-click="c.upField(f)" ng-show="$index > 0">
+                            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="field-data">
+                    <div ng-show="f.FieldType===0">
+                        <div ng-click="f.expanded=!f.expanded" class="title">
+                            <strong>
+                                <span class="glyphicon glyphicon-font"></span>
+                                {{ f.Label }}
+                            </strong>
+                        </div>
+                        <div ng-show="f.expanded">
                             <input type="text" ng-model="f.Label" class="form-control" />
                         </div>
-                        <div ng-show="f.FieldType===1">
-                            <strong>field</strong>
+                    </div>
+                    <div ng-show="f.FieldType===1">
+                        <div ng-click="f.expanded=!f.expanded" class="title">
+                            <strong>
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                {{ dbf.Name }} <small>({{ dbf.Reference }})</small>
+                            </strong>
+                        </div>
+                        <div ng-show="f.expanded">
                             <span>{{ f.Reference }}</span>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" ng-model="f.IsRequired" /> Required
+                                            <input type="checkbox" ng-model="f.IsRequired"/> Required
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" ng-model="f.ShowLabel" /> Show label
+                                            <input type="checkbox" ng-model="f.ShowLabel"/> Show label
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-9">
-                                    label:
-                                    <input type="text" ng-model="f.Label" class="form-control" />
+                                    Label:
+                                    <input type="text" ng-model="f.Label" class="form-control"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="controls">
-                        <a href="" ng-click="c.deleteField(f)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    </div>
+                </div>
+                <div class="controls">
+                    <a href="" ng-click="c.deleteField(f)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>

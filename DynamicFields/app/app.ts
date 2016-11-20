@@ -10,6 +10,9 @@ let app = angular.module('form', []);
 interface IFormData {
     Id: number;
     FormFields: any[];
+    Fields: {
+        DbFields: any[];
+    }
 }
 
 class EditFormController {
@@ -26,7 +29,11 @@ class EditFormController {
     }
 
     addHeadline() {
-        this.form.FormFields.push({ FieldType: 0, FormId: this.form.Id, Label: 'headline text' });
+        this.form.FormFields.push({
+            FieldType: 0,
+            FormId: this.form.Id,
+            Label: 'headline text'
+        });
     }
 
     addField(f) {
@@ -56,6 +63,10 @@ class EditFormController {
     downField(f) {
         let idx = this.form.FormFields.indexOf(f);
         move(this.form.FormFields, idx, idx + 1);
+    }
+
+    getField(id) {
+        return this.form.Fields.DbFields.filter(f => f.Id === id)[0];
     }
 
     form: IFormData;

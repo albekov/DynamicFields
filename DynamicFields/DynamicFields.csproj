@@ -180,7 +180,7 @@
   <ItemGroup>
     <Content Include="app\*" />
     <Content Include="bundle\*" />
-    <Content Include="typings\*" />
+    <Content Include="typings\**\*" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
