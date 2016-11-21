@@ -19,7 +19,7 @@
     @foreach (var f in Model.DbFields)
     {
         <tr>
-            <td>@Html.ActionLink(f.Name, "Edit", new { id = f.Id })</td>
+            <td>@Html.ActionLink(f.Name ?? "-", "Edit", new { id = f.Id })</td>
             <td>@f.Label</td>
             <td
                 @if (f.ReferenceField == null)

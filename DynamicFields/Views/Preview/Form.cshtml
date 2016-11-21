@@ -16,21 +16,26 @@
 <div>
     @using (var form = Html.BeginDynamicForm("SaveForm", "Forms", Model.Form, Model.Data, new {@class = "form"}))
     {
-        <h1>@form.Name</h1>
+        <h2>@form.Name</h2>
         <blockquote>@form.Description</blockquote>
         foreach (var field in form.Fields())
         {
-            if (field.IsHeadline)
-            {
-                <h2>@field.Render()</h2>
-            }
-            else
-            {
-                <div class="form-group">
-                    <label>@field.Label:</label>
-                    @field.Render(new {@class = "form-control"})
-                </div>
-            }
+            <div class="row form-group">
+                @if (field.IsHeadline)
+                {
+                    <h3>@field.Render()</h3>
+                }
+                else
+                {
+                    if (field.SholLabel)
+                    {
+                        <label>@field.Label:</label>
+                    }
+                    <div>
+                        @field.Render(new { @class = "form-control" })
+                    </div>
+                }
+            </div>
         }
 
         <input type="submit" value="Save" class="btn btn-default"/>

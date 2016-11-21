@@ -43,12 +43,13 @@ namespace DynamicFields.Controllers
         {
             var form = Mapper.Map<DynamicForm>(vm);
 
+            int id;
             if (form.Id == 0)
-                _formFieldService.Add(form);
+                id= _formFieldService.Add(form).Id;
             else
-                _formFieldService.Update(form);
+                id = _formFieldService.Update(form).Id;
 
-            return Json(new {ok = "ok"});
+            return Json(new {ok = "ok", id = id});
         }
 
         public ActionResult Delete(int id)

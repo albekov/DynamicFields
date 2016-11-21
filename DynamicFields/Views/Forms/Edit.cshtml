@@ -11,15 +11,18 @@
         <div class="col-sm-6">
             <h2>Edit '{{ c.form.Name }}' form</h2>
         </div>
+        <div class="col-sm-2">
+            <a ng-class="{disabled: c.form.Id<=0}"
+               class="btn btn-default form-control"
+               href="@Url.Action("Form", "Preview", new {formId = Model.Id})"
+               target="blank">
+                PREVIEW
+            </a>
+        </div>
         <div class="col-sm-4">
             <a class="btn btn-info form-control" ng-click="c.save()">
                 SAVE
                 <span class="glyphicon glyphicon-time" aria-hidden="true" ng-show="c.saving"></span>
-            </a>
-        </div>
-        <div class="col-sm-2">
-            <a class="btn btn-default form-control" href="@Url.Action("Form", "Preview", new {formId = Model.Id})" target="blank">
-                PREVIEW
             </a>
         </div>
     </div>
@@ -129,5 +132,6 @@
     <script>
         var form = @Html.Raw(form);
         var saveFormUrl = '@Url.Action("Update")';
+        var editFormUrl = '@Url.Action("Edit")';
     </script>
 }

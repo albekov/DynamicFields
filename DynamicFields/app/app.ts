@@ -4,6 +4,7 @@ import './main.less';
 
 declare var form: any;
 declare var saveFormUrl: string;
+declare var editFormUrl: string;
 
 let app = angular.module('form', []);
 
@@ -24,8 +25,12 @@ class EditFormController {
     save() {
         this.saving = true;
         this.$http
-            .post(saveFormUrl, this.form)
-            .then(() => this.saving = false);
+            .post<any>(saveFormUrl, this.form)
+            .then(res => {
+                this.saving = false;
+                if (this.form.Id === 0)
+                    window.location.replace(editFormUrl + '/' + res.data.id);
+            });
     }
 
     addHeadline() {
