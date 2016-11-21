@@ -73,7 +73,7 @@ namespace DynamicFields.Helpers
         private readonly DynamicFormField _field;
 
         public bool IsHeadline => _field.FieldType == FieldType.Headline;
-        public bool SholLabel => _field.ShowLabel;
+        public bool ShowLabel => _field.ShowLabel;
 
         public string Label => _field.Label;
 
