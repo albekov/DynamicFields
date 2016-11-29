@@ -1,12 +1,13 @@
 {
-  "name": "DyamicFields",
+  "name": "dynamicfields",
   "version": "0.0.1",
   "description": "DyamicFields",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "typings": "typings install",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
